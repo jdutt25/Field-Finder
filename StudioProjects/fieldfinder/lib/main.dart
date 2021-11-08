@@ -2,18 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
+
 
 
 void main() {
 
     runApp(MaterialApp(
-      home: MyApp(),
+      home: MyApp(americandistance : '?', cameldistance : '?',
+        goodyeardistance : '?', hohokamdistance : '?', peoriadistance : '?',
+        saltdistance : '?', scottsdaledistance : '?', sloandistance : '?',
+        surprisedistance : '?', tempedistance : '?',),
       title: 'Field Finder: Cactus League',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
       //const MyApp(
-        //items: List<String>.generate(10000, (i) => 'Item $i'),
        // items: ['American Family Fields of Phoenix','Camelback Ranch', 'Goodyear '
         //    'Ballpark', 'Hohokam Stadium', 'Peoria Sports Complex', 'Salt River '
           //  'Fields at Talking Stick', 'Scottsdale Stadium', 'Sloan Stadium',
@@ -25,60 +29,70 @@ void main() {
 class MyApp extends StatelessWidget {
   // final List items;
 
+   var americandistance;
+   var cameldistance;
+   var goodyeardistance;
+   var hohokamdistance;
+   var peoriadistance;
+   var saltdistance;
+   var scottsdaledistance;
+   var sloandistance;
+   var surprisedistance;
+   var tempedistance;
+
 //  const MyApp({Key? key, required this.items}) : super(key: key);
-  MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key, this.americandistance, this.cameldistance, this.goodyeardistance,
+  this.hohokamdistance, this.peoriadistance, this.saltdistance, this.scottsdaledistance,
+  this.sloandistance, this.surprisedistance, this.tempedistance} ) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     const title = 'Field Finder: Cactus League';
-
     return
-       Scaffold(
 
-        appBar: AppBar(
-          title: const Text(title),
-        ),
-
-        body:
-        ListView(
+    Scaffold(
+      appBar: AppBar(
+        title: const Text(title),
+      ),
+      body:
+      ListView(
           children: <Widget>[
             ListTile(
               leading: const Icon(Icons.question_answer_outlined),
               title: const Text('How to use',
-              style: TextStyle(fontStyle: FontStyle.italic)),
+                  style: TextStyle(fontStyle: FontStyle.italic)),
               tileColor: Colors.lightGreen[100],
               onTap: () {
-                // popup info
-                Navigator.of(context).restorablePush(_learnMore);
-                },
-              ),
+        // popup info
+                // Navigator.of(context).restorablePush(_learnMore);
+              },
+            ),
 
-              ListTile(
-                    leading: const Icon(Icons.map),
-                    title: const Text('Calculate distance to stadiums'),
-                    tileColor: Colors.lightGreen[200],
-                    onTap: () {
-                      // popup form
-                      Navigator.of(context).restorablePush(_popupForm);
-
-                    }
-                ),
-
-                ListTile(
-                leading: const Icon(Icons.sports_baseball_outlined),
-                title: const Text('American Family Field'),
-                subtitle: Text('? miles away'),
+            ListTile(
+              leading: const Icon(Icons.map),
+                title: const Text('Calculate distance to stadiums'),
+                tileColor: Colors.lightGreen[200],
                 onTap: () {
+                // popup form
+                  Navigator.of(context).restorablePush(_popupForm);
+                    }
+                    ),
+
+            ListTile(
+              leading: const Icon(Icons.sports_baseball_outlined),
+              title: const Text('American Family Field'),
+              subtitle: Text(americandistance + ' miles away'),
+              onTap: () {
                 Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AmericanRoute()),
+                  context,
+                  MaterialPageRoute(builder: (context) => const AmericanRoute()),
                 );
                 },
             ),
             ListTile(
               leading: const Icon(Icons.sports_baseball_outlined),
               title: const Text('Camelback Ranch'),
-              subtitle: Text('? miles away'),
+              subtitle: Text(cameldistance +' miles away'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -89,7 +103,7 @@ class MyApp extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.sports_baseball_outlined),
               title: const Text('Goodyear Ballpark'),
-              subtitle: Text('? miles away'),
+              subtitle: Text(goodyeardistance +' miles away'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -100,7 +114,7 @@ class MyApp extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.sports_baseball_outlined),
             title: const Text('Hohokam Stadium'),
-            subtitle: Text('? miles away'),
+            subtitle: Text(hohokamdistance +' miles away'),
             onTap: () {
               Navigator.push(
                 context,
@@ -111,7 +125,7 @@ class MyApp extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.sports_baseball_outlined),
             title: const Text('Peoria Sports Complex'),
-            subtitle: Text('? miles away'),
+            subtitle: Text(peoriadistance +' miles away'),
             onTap: () {
               Navigator.push(
                 context,
@@ -133,7 +147,7 @@ class MyApp extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.sports_baseball_outlined),
               title: const Text('Scottsdale Stadium'),
-              subtitle: Text('? miles away'),
+              subtitle: Text(scottsdaledistance +' miles away'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -144,7 +158,7 @@ class MyApp extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.sports_baseball_outlined),
               title: const Text('Sloan Park'),
-              subtitle: Text('? miles away'),
+              subtitle: Text(sloandistance +' miles away'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -155,7 +169,7 @@ class MyApp extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.sports_baseball_outlined),
               title: const Text('Surprise Stadium'),
-              subtitle: Text('? miles away'),
+              subtitle: Text(surprisedistance +' miles away'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -166,7 +180,7 @@ class MyApp extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.sports_baseball_outlined),
               title: const Text('Tempe Diablo Stadium'),
-              subtitle: Text('? miles away'),
+              subtitle: Text(tempedistance +' miles away'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -222,8 +236,8 @@ class AmericanRoute extends StatelessWidget {
             const Text("Spring Training home of the Milwaukee Brewers",
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
             ),
-             const Text("? miles away from given location",
-             style: TextStyle(fontStyle: FontStyle.italic)),
+            // const Text("? miles away from given location",
+             //style: TextStyle(fontStyle: FontStyle.italic)),
             const SizedBox(height: 10),
             const Text( "'American Family Field, where a fan upon encountering the brick"
                     " facade and structural elegance can't help but feel the reincarnation"
@@ -285,8 +299,8 @@ class CamelRoute extends StatelessWidget {
                 "Angeles Dodgers", textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
             ),
-                 const Text("? miles away from given location",
-                 style: TextStyle(fontStyle: FontStyle.italic)),
+               //  const Text("? miles away from given location",
+                 //style: TextStyle(fontStyle: FontStyle.italic)),
             const SizedBox(height: 10),
             const Text( "'A state-of-the-art baseball facility, Camelback "
                 "Ranch-Glendale is home to the Dodgers' and White Sox' kickoff each year. "
@@ -353,8 +367,8 @@ class GoodyearRoute extends StatelessWidget {
                     "Indians", textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                const Text("? miles away from given location",
-                style: TextStyle(fontStyle: FontStyle.italic)),
+                //const Text("? miles away from given location",
+                //style: TextStyle(fontStyle: FontStyle.italic)),
                 const SizedBox(height: 10),
                 const Text( "'The Reds and Indians train in a state-of-the-art "
                     "Player Development Complex and share Goodyear Ballpark with "
@@ -409,8 +423,8 @@ class HohokamRoute extends StatelessWidget {
                 const Text("Spring Training home of the Oakland Athletics", textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                 const Text("? miles away from given location",
-                     style: TextStyle(fontStyle: FontStyle.italic)),
+                 //const Text("? miles away from given location",
+                   //  style: TextStyle(fontStyle: FontStyle.italic)),
                 const SizedBox(height: 10),
                 const Text( "'Crisp visuals and in-game entertainment, shaded "
                     "terrace level and down the line areas, and outfield berm "
@@ -474,8 +488,8 @@ class PeoriaRoute extends StatelessWidget {
                     "Diego Padres", textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                 const Text("? miles away from given location",
-                     style: TextStyle(fontStyle: FontStyle.italic)),
+                 //const Text("? miles away from given location",
+                   //  style: TextStyle(fontStyle: FontStyle.italic)),
                 const SizedBox(height: 10),
                 const Text( "'Peoria Sports Complex is located in the heart of "
                     "Peoria's P83 Entertainment District. The city's crown jewel"
@@ -543,8 +557,8 @@ class SaltRoute extends StatelessWidget {
                     "Diamondbacks", textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                 const Text("? miles away from given location",
-                 style: TextStyle(fontStyle: FontStyle.italic)),
+                 //const Text("? miles away from given location",
+                 //style: TextStyle(fontStyle: FontStyle.italic)),
                 const SizedBox(height: 10),
                 const Text( "'Salt River Fields at Talking Stick includes an "
                     "11,000-seat capacity ballpark, a total of 12 practice fields "
@@ -610,8 +624,8 @@ class ScottsdaleRoute extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                const Text("? miles away from given location",
-                    style: TextStyle(fontStyle: FontStyle.italic)),
+                //const Text("? miles away from given location",
+                  //  style: TextStyle(fontStyle: FontStyle.italic)),
                 const SizedBox(height: 10),
                 const Text( "'Located in the middle of historic Old Town, Scottsdale "
                     "Stadium sits on the corner of Osborn Rd and Drinkwater Blvd. "
@@ -675,8 +689,8 @@ class SloanRoute extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                const Text("? miles away from given location",
-                    style: TextStyle(fontStyle: FontStyle.italic)),
+                //const Text("? miles away from given location",
+                  //  style: TextStyle(fontStyle: FontStyle.italic)),
                 const SizedBox(height: 10),
                 const Text( "'Sloan Park is an American baseball park in Mesa,"
                     " Arizona, which opened in 2014. The primary operator is the "
@@ -751,8 +765,8 @@ class SurpriseRoute extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                 const Text("? miles away from given location",
-                     style: TextStyle(fontStyle: FontStyle.italic)),
+                 //const Text("? miles away from given location",
+                   //  style: TextStyle(fontStyle: FontStyle.italic)),
                 const SizedBox(height: 10),
                 const Text( "'Located in Surprise, Ariz., 25 miles northwest of"
                     " Phoenix, Surprise Stadium is the Spring Training home to the"
@@ -808,8 +822,8 @@ class TempeRoute extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                const Text("? miles away from given location",
-                    style: TextStyle(fontStyle: FontStyle.italic)),
+                //const Text("? miles away from given location",
+                  //  style: TextStyle(fontStyle: FontStyle.italic)),
                 const SizedBox(height: 10),
                 const Text( "'Tempe Diablo Stadium is a baseball field located in "
                     "Tempe, Arizona. It has been the spring training home of the "
@@ -861,37 +875,40 @@ Route<Object?> _learnMore(BuildContext context, Object? arguments) {
 
 Route<Object?> _popupForm(BuildContext context, Object? arguments) {
   final _formKey = GlobalKey<FormState>();
+
   return DialogRoute<void>(
     context: context,
     builder: (BuildContext context)
   {
     return AlertDialog(
-        title: const Text('Please enter an address'),
+        title: const Text('Please enter a complete address including city, state'
+            ' and zip code'),
         content: Form(
           key: _formKey,
            child: ListView(
             children: <Widget>[
               TextFormField(
                 // The validator receives the text that the user has entered.
-               // validator: (value) {
-                 // if (value == null || value.isEmpty) {
-                   // return 'Please enter an address';
-                  //}
-                  //return null;
-                //},
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter an address';
+                  }
+                  var address = value;
+                  return null;
+                },
               ),
-              Text('Address'),
-              TextFormField(
+               const Text('Address'),
+               //  TextFormField(
                 // The validator receives the text that the user has entered.
-              //  validator: (value) {
-                //  if (value == null || value.isEmpty) {
+                //validator: (value) {
+                  //if (value == null || value.isEmpty) {
                   //  return 'Please enter a City';
                  // }
                   //return null;
                 //},
-              ),
-              const Text('City'),
-              TextFormField(
+             //),
+              //const Text('City'),
+              //TextFormField(
                 // The validator receives the text that the user has entered.
                // validator: (value) {
                 //  if (value == null || value.isEmpty) {
@@ -899,9 +916,9 @@ Route<Object?> _popupForm(BuildContext context, Object? arguments) {
                   //}
                  // return null;
                // },
-              ),
-              const Text('State'),
-              TextFormField(
+              //),
+              //const Text('State'),
+              //TextFormField(
                 // The validator receives the text that the user has entered.
                 //validator: (value) {
                   //if (value == null || value.isEmpty) {
@@ -909,28 +926,62 @@ Route<Object?> _popupForm(BuildContext context, Object? arguments) {
                   //}
                   //return null;
                 //},
-              ),
-              Text('Zip Code'),
+              //),
+              //Text('Zip Code'),
               ElevatedButton(
-              onPressed: () {
-                // Validate returns true if the form is valid, or false otherwise.
-               // if (_formKey.currentState.validate()) {
-                  // If the form is valid, display a snackbar. Later will
-                  // use information to call microservice. the information in a database.
-                  Navigator.of(context).pop();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Calculating distance'),//),
+                onPressed: () {
+                  // Validate returns true if the form is valid, or false otherwise.
+                  if (_formKey.currentState!.validate()) {
+                    //If the form is valid, display a snackbar. Later will
+                    // use information to call microservice
 
-                  )
+                    var americandist = 'test?';
+                    var cameldist = '?';
+                    var goodyeardist = '?';
+                    var hohokamdist = '?';
+                    var peoriadist = '?';
+                    var saltdist = '?';
+                    var scottsdaledist = '?';
+                    var sloandist = '?';
+                    var surprisedist = '?';
+                    var tempedist = '?';
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyApp(americandistance: americandist,
+                          cameldistance : cameldist, goodyeardistance : goodyeardist,
+                          hohokamdistance : hohokamdist, peoriadistance : peoriadist,
+                          saltdistance : saltdist, scottsdaledistance : scottsdaledist,
+                          sloandistance : sloandist, surprisedistance : surprisedist,
+                        tempedistance : tempedist,
+                      )),
                     );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Calculating distance'), //),
+                        )
+                    );
+                  }
                 },
-              child: const Text('Submit'),
+                child: const Text('Submit'),
               ),
-                  ],
+                ElevatedButton(
+                      // goes back to home screen without calculating distance
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                  ),
+                  onPressed: () {
+                    // goes back to home screen
+                      Navigator.of(context).pop();
+                    },
+                  child: const Text('Cancel'),
                 ),
-              )
+             ],
+           ),
+        )
     );
-  });
+  }
+  );
 }
 
 
