@@ -139,7 +139,7 @@ class MyApp extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.sports_baseball_outlined),
               title: const Text('Salt River Fields at Talking Stick'),
-               subtitle: Text('? miles away'),
+               subtitle: Text(saltdistance + ' miles away'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -942,11 +942,11 @@ Route<Object?> _popupForm(BuildContext context, Object? arguments) {
                     var val = Text(myController.text);
                     var fromAdd = val.data;
                     var americandist = await _getMiles(fromAdd, 'americanfamilyfieldsofphoenix');
-                    var cameldist = await _getMiles(fromAdd, 'camelbackranch');
+                    var cameldist = await _getMiles(fromAdd, 'camelbackranch-glendale');
                     var goodyeardist = await _getMiles(fromAdd, 'goodyearballpark');
                     var hohokamdist = await _getMiles(fromAdd, 'hohokamstadium');
                     var peoriadist = await _getMiles(fromAdd, 'peoriasportscomplex');
-                    var saltdist = await _getMiles(fromAdd, 'saltriverfieldsattalkingstick');
+                    var saltdist = await _getMiles(fromAdd, 'saltriverfields');
                     var scottsdaledist = await _getMiles(fromAdd, 'scottsdalestadium');
                     var sloandist = await _getMiles(fromAdd, 'sloanpark');
                     var surprisedist = await _getMiles(fromAdd, 'surprisestadium');
