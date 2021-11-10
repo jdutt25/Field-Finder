@@ -3,6 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'dart:convert';
 
 
 
@@ -873,78 +876,81 @@ Route<Object?> _learnMore(BuildContext context, Object? arguments) {
   );
 }
 
+
 Route<Object?> _popupForm(BuildContext context, Object? arguments) {
+  //final _formKey = GlobalKey<FormBuilderState>();
   final _formKey = GlobalKey<FormState>();
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+   // super.dispose();
+  }
+
 
   return DialogRoute<void>(
     context: context,
     builder: (BuildContext context)
+
+
   {
+    _getMiles(fromAdd, toAdd) async {
+      var from = 'http://10.0.2.2:5000/distance?from=';
+      var to = '&to=';
+      var url = Uri.parse(from + fromAdd!.replaceAll(' ', '') + to +
+          toAdd);
+      var response = await http.get(url);
+      var body = json.decode(response.body);
+      var miles = body["Miles"].round();
+      return (miles.toString());
+    }
+
     return AlertDialog(
-        title: const Text('Please enter a complete address including city, state'
-            ' and zip code'),
+        title: const Text('Please enter the name of an establishment or '
+            'complete address including city, state and zip code'),
         content: Form(
-          key: _formKey,
-           child: ListView(
-            children: <Widget>[
-              TextFormField(
+        key: _formKey,
+        child: ListView(
+        children: <Widget>[
+            TextFormField(
+              controller: myController,
+             // FormBuilderTextField(name: 'address',
                 // The validator receives the text that the user has entered.
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter an address';
-                  }
-                  var address = value;
-                  return null;
+              validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter an address';
+                }
+                return null;
                 },
+                //validator: FormBuilderValidators.required(
+                  //context,
+                  //errorText: 'Please enter an address',
+                //),
               ),
                const Text('Address'),
-               //  TextFormField(
-                // The validator receives the text that the user has entered.
-                //validator: (value) {
-                  //if (value == null || value.isEmpty) {
-                  //  return 'Please enter a City';
-                 // }
-                  //return null;
-                //},
-             //),
-              //const Text('City'),
-              //TextFormField(
-                // The validator receives the text that the user has entered.
-               // validator: (value) {
-                //  if (value == null || value.isEmpty) {
-                  //  return 'Please enter a State';
-                  //}
-                 // return null;
-               // },
-              //),
-              //const Text('State'),
-              //TextFormField(
-                // The validator receives the text that the user has entered.
-                //validator: (value) {
-                  //if (value == null || value.isEmpty) {
-                    //return 'Please enter the zipcode';
-                  //}
-                  //return null;
-                //},
-              //),
-              //Text('Zip Code'),
+
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  _formKey.currentState!.save();
                   // Validate returns true if the form is valid, or false otherwise.
                   if (_formKey.currentState!.validate()) {
                     //If the form is valid, display a snackbar. Later will
                     // use information to call microservice
 
-                    var americandist = 'test?';
-                    var cameldist = '?';
-                    var goodyeardist = '?';
-                    var hohokamdist = '?';
-                    var peoriadist = '?';
-                    var saltdist = '?';
-                    var scottsdaledist = '?';
-                    var sloandist = '?';
-                    var surprisedist = '?';
-                    var tempedist = '?';
+                    var val = Text(myController.text);
+                    var fromAdd = val.data;
+                    var americandist = await _getMiles(fromAdd, 'americanfamilyfieldsofphoenix');
+                    var cameldist = await _getMiles(fromAdd, 'camelbackranch');
+                    var goodyeardist = await _getMiles(fromAdd, 'goodyearballpark');
+                    var hohokamdist = await _getMiles(fromAdd, 'hohokamstadium');
+                    var peoriadist = await _getMiles(fromAdd, 'peoriasportscomplex');
+                    var saltdist = await _getMiles(fromAdd, 'saltriverfieldsattalkingstick');
+                    var scottsdaledist = await _getMiles(fromAdd, 'scottsdalestadium');
+                    var sloandist = await _getMiles(fromAdd, 'sloanpark');
+                    var surprisedist = await _getMiles(fromAdd, 'surprisestadium');
+                    var tempedist = await _getMiles(fromAdd, 'tempediablostadium');
 
                     Navigator.push(
                       context,
@@ -961,8 +967,9 @@ Route<Object?> _popupForm(BuildContext context, Object? arguments) {
                           content: Text('Calculating distance'), //),
                         )
                     );
-                  }
-                },
+                  };
+
+               },
                 child: const Text('Submit'),
               ),
                 ElevatedButton(
@@ -980,8 +987,11 @@ Route<Object?> _popupForm(BuildContext context, Object? arguments) {
            ),
         )
     );
+
   }
+
   );
+
 }
 
 
