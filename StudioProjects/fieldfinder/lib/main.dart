@@ -3,8 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'dart:convert';
 
 
@@ -20,11 +18,6 @@ void main() {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      //const MyApp(
-       // items: ['American Family Fields of Phoenix','Camelback Ranch', 'Goodyear '
-        //    'Ballpark', 'Hohokam Stadium', 'Peoria Sports Complex', 'Salt River '
-          //  'Fields at Talking Stick', 'Scottsdale Stadium', 'Sloan Stadium',
-           // 'Surprise Stadium', 'Tempe Diablo Stadium'],
       ),
     );
   }
@@ -465,8 +458,7 @@ class PeoriaRoute extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
               children: <Widget>[
-                Image.network(
-                    'https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_600,q_75,w_900/https://assets.simpleviewinc.com/simpleview/image/upload/v1/clients/phoenix/Peoria_Sports_Complex_003ab847-6a8f-44c8-b5c0-20caea842648.jpg'),
+                Image.network('https://upload.wikimedia.org/wikipedia/commons/7/7e/Peoria_Stadium.jpg'),
                 ElevatedButton(
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.cyan[900],
@@ -941,14 +933,14 @@ Route<Object?> _popupForm(BuildContext context, Object? arguments) {
 
                     var val = Text(myController.text);
                     var fromAdd = val.data;
-                    var americandist = await _getMiles(fromAdd, 'americanfamilyfieldsofphoenix');
+                    var americandist = _getMiles(fromAdd, 'americanfamilyfieldsofphoenix');
                     var cameldist = await _getMiles(fromAdd, 'camelbackranch-glendale');
                     var goodyeardist = await _getMiles(fromAdd, 'goodyearballpark');
                     var hohokamdist = await _getMiles(fromAdd, 'hohokamstadium');
                     var peoriadist = await _getMiles(fromAdd, 'peoriasportscomplex');
-                    var saltdist = await _getMiles(fromAdd, 'saltriverfields');
+                    var saltdist = await _getMiles(fromAdd, 'saltriverfieldsattalkingstick');
                     var scottsdaledist = await _getMiles(fromAdd, 'scottsdalestadium');
-                    var sloandist = await _getMiles(fromAdd, 'sloanpark');
+                    var sloandist = await _getMiles(fromAdd, 'sloanparkmesa');
                     var surprisedist = await _getMiles(fromAdd, 'surprisestadium');
                     var tempedist = await _getMiles(fromAdd, 'tempediablostadium');
 
