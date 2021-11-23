@@ -5,8 +5,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
-
 void main() {
 
     runApp(MaterialApp(
@@ -23,7 +21,6 @@ void main() {
   }
 
 class MyApp extends StatelessWidget {
-  // final List items;
 
    var americandistance;
    var cameldistance;
@@ -36,7 +33,6 @@ class MyApp extends StatelessWidget {
    var surprisedistance;
    var tempedistance;
 
-//  const MyApp({Key? key, required this.items}) : super(key: key);
   MyApp({Key? key, this.americandistance, this.cameldistance, this.goodyeardistance,
   this.hohokamdistance, this.peoriadistance, this.saltdistance, this.scottsdaledistance,
   this.sloandistance, this.surprisedistance, this.tempedistance} ) : super(key: key);
@@ -60,7 +56,7 @@ class MyApp extends StatelessWidget {
               tileColor: Colors.lightGreen[100],
               onTap: () {
         // popup info
-                // Navigator.of(context).restorablePush(_learnMore);
+                 Navigator.of(context).restorablePush(_learnMore);
               },
             ),
 
@@ -190,21 +186,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-    //ListView.separated(
-          //    itemCount: items.length,
-            //  itemBuilder: (context, index) {
-              //return ListTile(
-                //title: Text(items[index]),
-             // );
-          //  },
-            //separatorBuilder: (context, index) {
-              //return Divider();
-        //      }
-        //),
-      //),
-    //);
-  //}
-//}
 
 class AmericanRoute extends StatelessWidget {
   const AmericanRoute({Key? key}) : super(key: key);
@@ -232,8 +213,7 @@ class AmericanRoute extends StatelessWidget {
             const Text("Spring Training home of the Milwaukee Brewers",
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
             ),
-            // const Text("? miles away from given location",
-             //style: TextStyle(fontStyle: FontStyle.italic)),
+
             const SizedBox(height: 10),
             const Text( "'American Family Field, where a fan upon encountering the brick"
                     " facade and structural elegance can't help but feel the reincarnation"
@@ -295,8 +275,6 @@ class CamelRoute extends StatelessWidget {
                 "Angeles Dodgers", textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
             ),
-               //  const Text("? miles away from given location",
-                 //style: TextStyle(fontStyle: FontStyle.italic)),
             const SizedBox(height: 10),
             const Text( "'A state-of-the-art baseball facility, Camelback "
                 "Ranch-Glendale is home to the Dodgers' and White Sox' kickoff each year. "
@@ -363,8 +341,7 @@ class GoodyearRoute extends StatelessWidget {
                     "Indians", textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                //const Text("? miles away from given location",
-                //style: TextStyle(fontStyle: FontStyle.italic)),
+
                 const SizedBox(height: 10),
                 const Text( "'The Reds and Indians train in a state-of-the-art "
                     "Player Development Complex and share Goodyear Ballpark with "
@@ -419,8 +396,7 @@ class HohokamRoute extends StatelessWidget {
                 const Text("Spring Training home of the Oakland Athletics", textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                 //const Text("? miles away from given location",
-                   //  style: TextStyle(fontStyle: FontStyle.italic)),
+
                 const SizedBox(height: 10),
                 const Text( "'Crisp visuals and in-game entertainment, shaded "
                     "terrace level and down the line areas, and outfield berm "
@@ -483,8 +459,7 @@ class PeoriaRoute extends StatelessWidget {
                     "Diego Padres", textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                 //const Text("? miles away from given location",
-                   //  style: TextStyle(fontStyle: FontStyle.italic)),
+
                 const SizedBox(height: 10),
                 const Text( "'Peoria Sports Complex is located in the heart of "
                     "Peoria's P83 Entertainment District. The city's crown jewel"
@@ -552,8 +527,7 @@ class SaltRoute extends StatelessWidget {
                     "Diamondbacks", textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                 //const Text("? miles away from given location",
-                 //style: TextStyle(fontStyle: FontStyle.italic)),
+
                 const SizedBox(height: 10),
                 const Text( "'Salt River Fields at Talking Stick includes an "
                     "11,000-seat capacity ballpark, a total of 12 practice fields "
@@ -619,8 +593,7 @@ class ScottsdaleRoute extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                //const Text("? miles away from given location",
-                  //  style: TextStyle(fontStyle: FontStyle.italic)),
+
                 const SizedBox(height: 10),
                 const Text( "'Located in the middle of historic Old Town, Scottsdale "
                     "Stadium sits on the corner of Osborn Rd and Drinkwater Blvd. "
@@ -684,8 +657,6 @@ class SloanRoute extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                //const Text("? miles away from given location",
-                  //  style: TextStyle(fontStyle: FontStyle.italic)),
                 const SizedBox(height: 10),
                 const Text( "'Sloan Park is an American baseball park in Mesa,"
                     " Arizona, which opened in 2014. The primary operator is the "
@@ -760,8 +731,6 @@ class SurpriseRoute extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                 //const Text("? miles away from given location",
-                   //  style: TextStyle(fontStyle: FontStyle.italic)),
                 const SizedBox(height: 10),
                 const Text( "'Located in Surprise, Ariz., 25 miles northwest of"
                     " Phoenix, Surprise Stadium is the Spring Training home to the"
@@ -817,8 +786,6 @@ class TempeRoute extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                //const Text("? miles away from given location",
-                  //  style: TextStyle(fontStyle: FontStyle.italic)),
                 const SizedBox(height: 10),
                 const Text( "'Tempe Diablo Stadium is a baseball field located in "
                     "Tempe, Arizona. It has been the spring training home of the "
@@ -878,7 +845,6 @@ Route<Object?> _popupForm(BuildContext context, Object? arguments) {
   void dispose() {
     // Clean up the controller when the widget is disposed.
     myController.dispose();
-   // super.dispose();
   }
 
 
@@ -908,7 +874,6 @@ Route<Object?> _popupForm(BuildContext context, Object? arguments) {
         children: <Widget>[
             TextFormField(
               controller: myController,
-             // FormBuilderTextField(name: 'address',
                 // The validator receives the text that the user has entered.
               validator: (value) {
               if (value == null || value.isEmpty) {
@@ -916,10 +881,6 @@ Route<Object?> _popupForm(BuildContext context, Object? arguments) {
                 }
                 return null;
                 },
-                //validator: FormBuilderValidators.required(
-                  //context,
-                  //errorText: 'Please enter an address',
-                //),
               ),
                const Text('Address'),
 
@@ -928,19 +889,18 @@ Route<Object?> _popupForm(BuildContext context, Object? arguments) {
                   _formKey.currentState!.save();
                   // Validate returns true if the form is valid, or false otherwise.
                   if (_formKey.currentState!.validate()) {
-                    //If the form is valid, display a snackbar. Later will
-                    // use information to call microservice
+                    //If the form is valid, display a snackbar and call microservice
 
                     var val = Text(myController.text);
                     var fromAdd = val.data;
-                    var americandist = _getMiles(fromAdd, 'americanfamilyfieldsofphoenix');
+                    var americandist = await _getMiles(fromAdd, 'americanfamilyfieldsofphoenix');
                     var cameldist = await _getMiles(fromAdd, 'camelbackranch-glendale');
                     var goodyeardist = await _getMiles(fromAdd, 'goodyearballpark');
                     var hohokamdist = await _getMiles(fromAdd, 'hohokamstadium');
                     var peoriadist = await _getMiles(fromAdd, 'peoriasportscomplex');
                     var saltdist = await _getMiles(fromAdd, 'saltriverfieldsattalkingstick');
                     var scottsdaledist = await _getMiles(fromAdd, 'scottsdalestadium');
-                    var sloandist = await _getMiles(fromAdd, 'sloanparkmesa');
+                    var sloandist = await _getMiles(fromAdd, 'sloanpark');
                     var surprisedist = await _getMiles(fromAdd, 'surprisestadium');
                     var tempedist = await _getMiles(fromAdd, 'tempediablostadium');
 
