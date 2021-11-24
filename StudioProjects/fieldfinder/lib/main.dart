@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
    var surprisedistance;
    var tempedistance;
 
+
   MyApp({Key? key, this.americandistance, this.cameldistance, this.goodyeardistance,
   this.hohokamdistance, this.peoriadistance, this.saltdistance, this.scottsdaledistance,
   this.sloandistance, this.surprisedistance, this.tempedistance} ) : super(key: key);
@@ -593,9 +594,8 @@ class ScottsdaleRoute extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-
                 const SizedBox(height: 10),
-                const Text( "'Located in the middle of historic Old Town, Scottsdale "
+                const Text("'Located in the middle of historic Old Town, Scottsdale "
                     "Stadium sits on the corner of Osborn Rd and Drinkwater Blvd. "
                     "This venue, built in 1955 and updated throughout the years,"
                     " serves as the Spring Training home for the San Francisco "
@@ -609,7 +609,6 @@ class ScottsdaleRoute extends StatelessWidget {
                     "intimate seating brings them closer to the action than "
                     "they've ever been. '",
                     textAlign: TextAlign.center),
-
                 const SizedBox(height: 10),
                 ElevatedButton(
                   style: TextButton.styleFrom(
@@ -837,7 +836,6 @@ Route<Object?> _learnMore(BuildContext context, Object? arguments) {
 
 
 Route<Object?> _popupForm(BuildContext context, Object? arguments) {
-  //final _formKey = GlobalKey<FormBuilderState>();
   final _formKey = GlobalKey<FormState>();
   final myController = TextEditingController();
 
@@ -939,11 +937,8 @@ Route<Object?> _popupForm(BuildContext context, Object? arguments) {
            ),
         )
     );
-
   }
-
   );
-
 }
 
 
